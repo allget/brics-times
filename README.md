@@ -1,5 +1,10 @@
 # brics-times
 
++ yarn
++ yarn dev
+
+http://localhost:3000
+
 ### Releases
 
 + Release 1.0.1
