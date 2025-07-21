@@ -9,7 +9,7 @@
     + [prototype 1.0.1](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=brics.drawio&dark=auto#R%3Cmxfile%3E%3Cdiagram%20name%3D%22P%C3%A1gina-1%22%20id%3D%22keI3J04D4nxAe10__Txb%22%3E1ZdRk5owEMc%2FDY%2FOEEDAR6qe57RnnbMz7WsKEdICoSEe2E%2FfhAQBg2M7o73xBcJ%2FNyH722UBw55n9YrCInkhEUoNy4xqw14YljVzTH4UwlEKU%2BBKIaY4khLohB3%2BjZSo5sUHHKFy4MgISRkuhmJI8hyFbKBBSkk1dNuTdHjXAsZIE3YhTHX1K45YIlXf8jr9GeE4ae8M3Jm0ZLB1VpGUCYxI1ZPspWHPKSFMjrJ6jlLBruUi5z1dsJ42RlHO%2FmbCN%2BqUe29dbpzXaPPsf3%2FbfWITMJXLvMH0oCJWu2XHFgElhzxCYhXTsD9UCWZoV8BQWCuec64lLEv5FeBDtRyiDNUXNwpO4fOyQSRDjB65i5rgmoqYKhnQEqy6BFi%2B0pIefKudCFXS49PaHRc%2BUGj%2BBZOrYdoQhkMMNVo8bjZEAlMc53wc8vgR5YKgg3mJBcqQ4SgS00fZDunfAq97htfW8QJ3BK9zN7qeRneBGEwTmPGYiOgenLOZPyzx2ZC4NwLcHAFu3w24P%2FLUu6mguCc8pj5e99eBtIZJ2fTngDv4Rd3Aac18FIvz9vXzNlgFm0XQrsh3KBeVDu%2FfXoB9tf4dT88G8O%2BWjpmWji%2B8ppvCRw9d%2BNPpELU7UvnenSp%2FnX2czIn7dAyC3c%2F5j2q5Dl4m1vXX3ZUKhGUhvzP2uBasbsEJmM5ZTwYjr7yxFnGTV94oKVsjFWzXXJh0BVk%2BXkUC056dkfb%2BXzMeBe1ooAVYE5gJP8oWDDMBQ7VPMy7YBUsJc8yOl4wc7yMmbHr2aDjv3UP0T%2BZVk5EM5s13SkFJPxeof9H5QPn3gPMH7Ov6U%2BSP9Ctwm6Twy%2B4nqbH1%2FjTt5R8%3D%3C%2Fdiagram%3E%3C%2Fmxfile%3E)
 
 + Release 1.0.0
-    + add home
+    + home
     + internacionalização (pt-br e en)
     + banner google adwords (horizontal, vertical)
     + technologies: React, Next.js, Sanity CMS
