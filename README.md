@@ -27,6 +27,7 @@ http://localhost:3000
 ### Backlog
 + internacionalização (adicionar linguas dos paises do brics)
 + logo brics
++ configurar Google analytics com firebase para saber numero de acessos
 + rever fontes
 + loja de bonés
 + ouvidoria e denuncia para apagagem de posts ofensivos
