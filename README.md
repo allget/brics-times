@@ -48,6 +48,11 @@ http://localhost:3000
 + criar template para video de youtube
 + inserir icones e links de redes sociais no site
 + area de calendario de eventos dos brics
++ criar cadastro de usuario
++ criar login de usuario
++ criar edição de usuario
++ colocar area para usuarios poder comentar no post
++ colocar opção de compartilhar post no whatsapp
 + area de programas e beneficios para integrantes dos brics (intercambio, campeonatos, concursos, etc)
 + aplicativo para smartTV
 + aplicativo ios
