@@ -46,6 +46,10 @@ http://localhost:3000
 + criar template para post do tiktok
 + criar canal do youtube
 + criar template para video de youtube
++ criar reddit 
++ criar template para post reddit
++ criar twitter 
++ criar template para post twitter
 + inserir icones e links de redes sociais no site
 + area de calendario de eventos dos brics
 + criar cadastro de usuario
