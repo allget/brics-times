@@ -23,3 +23,28 @@
 + internacionalização (adicionar linguas dos paises do brics)
 + logo brics
 + rever fontes
++ loja de bonés
++ ouvidoria e denuncia para apagagem de posts ofencivos
++ gerar tags, meta tags, para otimizar SEO no google, bing e navegadores dos brics
++ propaganda em videos
++ criar redes sociais
++ criar templates para post de redes sociais
++ area de parcerias e convidar colunistas e redatores
++ fazer email e telefone para contato no whatsapp business
++ area de contato
++ area de filantropia, doações e ajuda a palestina unicef, cruz vermelha, e nosso tbm
++ ver o termo de aceite do usuario sobre as informações
++ colocar as fontes de onde foi tirado a noticia
++ criar facebook 
++ criar template para post do facebook
++ criar tiktok 
++ criar template para post do tiktok
++ criar canal do youtube
++ criar template para video de youtube
++ inserir icones e links de redes sociais no site
++ area de calendario de eventos dos brics
++ area de programas e beneficios para integrantes dos brics (intercambio, campeonatos, concursos, etc)
++ aplicativo para smartTV
++ aplicativo ios
++ aplicativo android
++ aplicativo HarmonyOS
