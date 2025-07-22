@@ -16,7 +16,6 @@ http://localhost:3000
 + Release 1.0.0
     + home
     + internacionalização (pt-br e en)
-    + banner google adwords (horizontal, vertical)
     + technologies: React, Next.js, Sanity CMS
     + Hero, menu, noticias, detalhe noticia, youtube video
     + dominio
@@ -64,3 +63,6 @@ http://localhost:3000
 + aplicativo ios
 + aplicativo android
 + aplicativo HarmonyOS
+
+Bloqueados
++ banner google adwords (horizontal, vertical) - falta aprovação do google na conta e validação no site hospedado que pode levar semanas
