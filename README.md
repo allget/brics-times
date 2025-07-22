@@ -29,7 +29,7 @@ http://localhost:3000
 + logo brics
 + rever fontes
 + loja de bonés
-+ ouvidoria e denuncia para apagagem de posts ofencivos
++ ouvidoria e denuncia para apagagem de posts ofensivos
 + gerar tags, meta tags, para otimizar SEO no google, bing e navegadores dos brics
 + propaganda em videos
 + criar redes sociais
@@ -51,6 +51,7 @@ http://localhost:3000
 + criar twitter 
 + criar template para post twitter
 + inserir icones e links de redes sociais no site
++ propaganda da loja de ingles do meu amigo
 + area de calendario de eventos dos brics
 + criar cadastro de usuario
 + criar login de usuario
