@@ -64,5 +64,5 @@ http://localhost:3000
 + aplicativo android
 + aplicativo HarmonyOS
 
-Bloqueados
+### Bloqueados
 + banner google adwords (horizontal, vertical) - falta aprovação do google na conta e validação no site hospedado que pode levar semanas
