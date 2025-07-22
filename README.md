@@ -40,6 +40,7 @@ http://localhost:3000
 + area de filantropia, doações e ajuda a palestina unicef, cruz vermelha, e nosso tbm
 + ver o termo de aceite do usuario sobre as informações
 + colocar as fontes de onde foi tirado a noticia
++ salvas cookies de usuarios para mandar notificações e alertas
 + criar facebook 
 + criar template para post do facebook
 + criar tiktok 
