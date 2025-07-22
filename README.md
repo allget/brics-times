@@ -16,6 +16,7 @@ http://localhost:3000
 + Release 1.0.0
     + home
     + internacionalização (pt-br e en)
+    + propaganda fisica de banners
     + technologies: React, Next.js, Sanity CMS
     + Hero, menu, noticias, detalhe noticia, youtube video
     + dominio
