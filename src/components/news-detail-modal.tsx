@@ -1,8 +1,12 @@
 "use client"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
 import { X, Clock, MapPin, Bookmark, BookmarkCheck } from "lucide-react"
 import type { NewsArticle } from "@/types"
 import { YouTubePlayer } from "./youtube-player"
+import { fetchAndActivate, getValue } from 'firebase/remote-config';
+import { remoteConfig } from '../../firebaseConfig';
+
 
 interface NewsDetailModalProps {
   article: NewsArticle | null
@@ -12,6 +16,22 @@ interface NewsDetailModalProps {
 }
 
 export function NewsDetailModal({ article, onClose, onSaveArticle, isSaved }: NewsDetailModalProps) {
+    const [bannerPropaganda, setBannerPropaganda] = useState('Carregando...');
+ 
+  useEffect(() => {
+      const loadRemoteConfig = async () => {
+        try {
+          await fetchAndActivate(remoteConfig);
+          const value = getValue(remoteConfig, 'banner_detalhe');
+          setBannerPropaganda(value.asString());
+        } catch (err) {
+          console.error('Erro ao carregar Remote Config:', err);
+          setBannerPropaganda('Erro ao carregar banner');
+        }
+      };
+  
+      loadRemoteConfig();
+    }, []);
   if (!article) return null
 
   return (
@@ -52,14 +72,18 @@ export function NewsDetailModal({ article, onClose, onSaveArticle, isSaved }: Ne
               {isSaved ? <BookmarkCheck className="w-5 h-5" /> : <Bookmark className="w-5 h-5" />}
             </button>
           </div>
-
+     
           <div className="p-6 md:p-12">
-            <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-zinc-600 dark:text-zinc-400">
-              <div className="flex items-center gap-2">
+              <div className="flex gap-2">
+                <img src={bannerPropaganda}/>
+              </div>
+            <div className="flex items-center gap-4 mb-6 text-sm text-zinc-600 dark:text-zinc-400">
+              
+              <div className="flex gap-2">
                 <MapPin className="w-4 h-4" />
                 <span className="uppercase tracking-wider font-bold">{article.country}</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex gap-2">
                 <Clock className="w-4 h-4" />
                 <span>{article.readTime}</span>
               </div>
