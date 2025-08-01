@@ -16,7 +16,7 @@ http://localhost:3000
 + Release 1.0.0
     + home
     + internacionalização (pt-br e en)
-    + banner propaganda (horizontal, vertical)
+    + propaganda fisica de banners vindo do firebase
     + technologies: React, Next.js, Sanity CMS
     + Hero, menu, noticias, detalhe noticia, youtube video
     + dominio
@@ -27,6 +27,7 @@ http://localhost:3000
 ### Backlog
 + internacionalização (adicionar linguas dos paises do brics)
 + logo brics
++ configurar Google analytics com firebase para saber numero de acessos
 + rever fontes
 + loja de bonés
 + banner google adwords (horizontal, vertical)
@@ -65,3 +66,6 @@ http://localhost:3000
 + aplicativo ios
 + aplicativo android
 + aplicativo HarmonyOS
+
+### Bloqueados
++ banner google adwords (horizontal, vertical) - falta aprovação do google na conta e validação no site hospedado que pode levar semanas
