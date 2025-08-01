@@ -16,7 +16,7 @@ http://localhost:3000
 + Release 1.0.0
     + home
     + internacionalização (pt-br e en)
-    + propaganda fisica de banners
+    + propaganda fisica de banners vindo do firebase
     + technologies: React, Next.js, Sanity CMS
     + Hero, menu, noticias, detalhe noticia, youtube video
     + dominio
@@ -30,6 +30,7 @@ http://localhost:3000
 + configurar Google analytics com firebase para saber numero de acessos
 + rever fontes
 + loja de bonés
++ banner google adwords (horizontal, vertical)
 + ouvidoria e denuncia para apagagem de posts ofensivos
 + gerar tags, meta tags, para otimizar SEO no google, bing e navegadores dos brics
 + propaganda em videos

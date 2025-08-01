@@ -11,6 +11,9 @@ import { ImageWithFallback } from "@/components/image-with-fallback"
 import { useLanguage } from "@/contexts/language-context"
 import { useSanityNews } from "@/hooks/use-sanity-news"
 import { useAnalysis } from "@/hooks/use-analysis"
+import { fetchAndActivate, getValue } from 'firebase/remote-config';
+import { remoteConfig } from '../../firebaseConfig';
+
 import {
   Bookmark,
   BookmarkCheck,
@@ -37,6 +40,7 @@ export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState("TODOS")
   const [selectedCategory, setSelectedCategory] = useState("TODAS")
   const [showFilters, setShowFilters] = useState(false)
+  const [bannerPropaganda, setBannerPropaganda] = useState('Carregando...');
 
   // 🔧 CORREÇÃO: Atualizar filtros quando o idioma mudar
   useEffect(() => {
@@ -143,6 +147,28 @@ export default function Home() {
   }
 
   const heroArticle = featuredArticle
+
+useEffect(() => {
+  const loadRemoteConfig = async () => {
+    if (!remoteConfig) {
+      console.warn("Remote Config não está disponível (SSR ou erro na inicialização).");
+      setBannerPropaganda("Banner indisponível");
+      return;
+    }
+
+    try {
+      await fetchAndActivate(remoteConfig);
+      const value = getValue(remoteConfig, 'banner_home');
+      setBannerPropaganda(value.asString());
+    } catch (err) {
+      console.error('Erro ao carregar Remote Config:', err);
+      setBannerPropaganda('Erro ao carregar banner');
+    }
+  };
+
+  loadRemoteConfig();
+}, []);
+
 
   const getHeroImageSrc = (): string => {
     // Prioridade 1: Imagem do artigo em destaque
@@ -390,7 +416,10 @@ export default function Home() {
                   <p className="text-zinc-600 dark:text-zinc-400">Loading fresh news...</p>
                 </div>
               )}
-
+            
+              <div>
+                <img src={bannerPropaganda}/>
+              </div>
               {!loading && filteredArticles.length === 0 ? (
                 <div className="text-center py-20 border-t border-zinc-900 dark:border-zinc-600">
                   <p className="text-xl text-zinc-600 dark:text-zinc-400 mb-4">{t("news.no.results")}</p>
