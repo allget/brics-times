@@ -1,7 +1,9 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp, getApps } from "firebase/app";
 import { getRemoteConfig } from "firebase/remote-config";
+import { getAnalytics, isSupported } from "firebase/analytics";
 
+let analytics: ReturnType<typeof getAnalytics> | null = null;
+let remoteConfig: ReturnType<typeof getRemoteConfig> | null = null;
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDRJASj8nX4ocGCIIWgvRM9t3UD1pr0sU",
@@ -13,19 +15,25 @@ const firebaseConfig = {
   measurementId: "G-179J9TT0QW"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const remoteConfig = getRemoteConfig(app);
+// Evita inicializar duas vezes
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-// Configurações iniciais
-remoteConfig.settings = {
-  minimumFetchIntervalMillis: 0, // intervalo mínimo entre buscas (0 = sempre busca, ideal em DEV)
-  fetchTimeoutMillis: 10000,  // ideal para DEV; em produção use >= 3600000 (1h)
-};
+// Só executa no browser
+if (typeof window !== "undefined") {
+  isSupported().then((enabled) => {
+    if (enabled) {
+      analytics = getAnalytics(app);
+    }
+  });
 
-remoteConfig.defaultConfig = {
-  welcome_message: "Olá, visitante!",
-};
+  remoteConfig = getRemoteConfig(app);
+  remoteConfig.settings = {
+    minimumFetchIntervalMillis: 0,
+    fetchTimeoutMillis: 10000,
+  };
+  remoteConfig.defaultConfig = {
+    welcome_message: "Olá, visitante!",
+  };
+}
 
-export { remoteConfig };
+export { remoteConfig, analytics };

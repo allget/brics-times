@@ -148,20 +148,26 @@ export default function Home() {
 
   const heroArticle = featuredArticle
 
-  useEffect(() => {
-    const loadRemoteConfig = async () => {
-      try {
-        await fetchAndActivate(remoteConfig);
-        const value = getValue(remoteConfig, 'banner_home');
-        setBannerPropaganda(value.asString());
-      } catch (err) {
-        console.error('Erro ao carregar Remote Config:', err);
-        setBannerPropaganda('Erro ao carregar banner');
-      }
-    };
+useEffect(() => {
+  const loadRemoteConfig = async () => {
+    if (!remoteConfig) {
+      console.warn("Remote Config não está disponível (SSR ou erro na inicialização).");
+      setBannerPropaganda("Banner indisponível");
+      return;
+    }
 
-    loadRemoteConfig();
-  }, []);
+    try {
+      await fetchAndActivate(remoteConfig);
+      const value = getValue(remoteConfig, 'banner_home');
+      setBannerPropaganda(value.asString());
+    } catch (err) {
+      console.error('Erro ao carregar Remote Config:', err);
+      setBannerPropaganda('Erro ao carregar banner');
+    }
+  };
+
+  loadRemoteConfig();
+}, []);
 
 
   const getHeroImageSrc = (): string => {
@@ -410,7 +416,7 @@ export default function Home() {
                   <p className="text-zinc-600 dark:text-zinc-400">Loading fresh news...</p>
                 </div>
               )}
-              <h1>{bannerPropaganda}</h1>;
+            
               <div>
                 <img src={bannerPropaganda}/>
               </div>
