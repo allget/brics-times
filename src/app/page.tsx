@@ -419,10 +419,12 @@ useEffect(() => {
               )}
             
               <div>
-                {bannerPropaganda ? (
+                {bannerPropaganda && bannerPropaganda.startsWith("http") ? (
                   <img src={bannerPropaganda} alt="Propaganda" />
                 ) : (
-                  <p>Carregando...</p>
+                  <p className="text-center py-4 text-sm text-zinc-500 dark:text-zinc-400">
+                    {bannerPropaganda || "Carregando..."}
+                  </p>
                 )}
                 {/* <img src={bannerPropaganda}/> */}
               </div>
