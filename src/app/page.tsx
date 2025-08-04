@@ -40,7 +40,8 @@ export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState("TODOS")
   const [selectedCategory, setSelectedCategory] = useState("TODAS")
   const [showFilters, setShowFilters] = useState(false)
-  const [bannerPropaganda, setBannerPropaganda] = useState('Carregando...');
+  // const [bannerPropaganda, setBannerPropaganda] = useState('Carregando...');
+  const [bannerPropaganda, setBannerPropaganda] = useState<string | null>(null)
 
   // 🔧 CORREÇÃO: Atualizar filtros quando o idioma mudar
   useEffect(() => {
@@ -418,7 +419,12 @@ useEffect(() => {
               )}
             
               <div>
-                <img src={bannerPropaganda}/>
+                {bannerPropaganda ? (
+                  <img src={bannerPropaganda} alt="Propaganda" />
+                ) : (
+                  <p>Carregando...</p>
+                )}
+                {/* <img src={bannerPropaganda}/> */}
               </div>
               {!loading && filteredArticles.length === 0 ? (
                 <div className="text-center py-20 border-t border-zinc-900 dark:border-zinc-600">

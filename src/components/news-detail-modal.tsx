@@ -16,7 +16,8 @@ interface NewsDetailModalProps {
 }
 
 export function NewsDetailModal({ article, onClose, onSaveArticle, isSaved }: NewsDetailModalProps) {
-    const [bannerPropaganda, setBannerPropaganda] = useState('Carregando...');
+    // const [bannerPropaganda, setBannerPropaganda] = useState('Carregando...');
+    const [bannerPropaganda, setBannerPropaganda] = useState<string | null>(null)
  
 useEffect(() => {
   const loadRemoteConfig = async () => {
@@ -81,7 +82,12 @@ useEffect(() => {
 
           <div className="flex">
             <div className="flex gap-2">
-                  <img src={bannerPropaganda}/>
+                  {/* <img src={bannerPropaganda}/> */}
+              {bannerPropaganda ? (
+                <img src={bannerPropaganda} alt="Propaganda" />
+              ) : (
+                <p>Carregando...</p>
+              )}
             </div>
           
           <div className="p-6 md:p-12">
