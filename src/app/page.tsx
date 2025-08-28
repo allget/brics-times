@@ -408,7 +408,7 @@ export default function Home() {
                       setSelectedCountry(t("country.all"))
                       setSelectedCategory(t("category.all"))
                     }}
-                    className="border border-zinc-900 dark:border-white px-6 py-3 text-xs font-bold tracking-widest hover:bg-zinc-900 dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors"
+                    className="border border-zinc-900 dark:border-white px-6 py-3 text-xs font-bold tracking-widest hover:bg-zinc-900 dark:hover:bg-white dark:hover:text-black hover:text-white transition-colors"
                   >
                     {t("news.see.all")}
                   </button>
@@ -552,7 +552,7 @@ export default function Home() {
                     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=600&fit=crop" ||
                     "/placeholder.svg" ||
                     "/placeholder.svg"
-                  }
+                   || "/placeholder.svg"}
                   alt="Arquivo BRICS"
                   className="w-full h-[400px] md:h-[600px] object-cover"
                   fallbackSrc="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=600&fit=crop"
@@ -636,12 +636,13 @@ export default function Home() {
                               {analysis.summary}
                             </p>
                           </div>
-                          <button
-                            onClick={() => (window.location.href = `/news/${analysis.id}`)}
+                          <Link
+                            href={`/analysis/${analysis.id}`}
                             className="text-xs font-bold tracking-widest self-start dark:text-zinc-300 dark:hover:text-white hover:underline mt-3"
+                            onClick={() => console.log(`🔗 Navegando para: /analysis/${analysis.id}`)}
                           >
                             LER ANÁLISE
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     ))}

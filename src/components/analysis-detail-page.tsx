@@ -15,6 +15,9 @@ export function AnalysisDetailPage({ analysis }: AnalysisDetailPageProps) {
   const { t } = useLanguage()
   const [showShareMenu, setShowShareMenu] = useState(false)
 
+  // 🐛 DEBUG: Log para verificar se o componente está recebendo os dados
+  console.log("AnalysisDetailPage recebeu:", analysis)
+
   const handleShare = async () => {
     if (navigator.share) {
       try {

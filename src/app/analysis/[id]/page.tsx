@@ -3,9 +3,9 @@ import type { Metadata } from "next"
 import { AnalysisDetailPage } from "@/components/analysis-detail-page"
 
 interface AnalysisPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 // Mock data das análises (mesmo do hook)
@@ -66,7 +66,8 @@ O futuro do impacto geopolítico do BRICS dependerá de sua capacidade de manter
 ]
 
 export async function generateMetadata({ params }: AnalysisPageProps): Promise<Metadata> {
-  const analysisId = Number.parseInt(params.id)
+  const { id } = await params
+  const analysisId = Number.parseInt(id)
   const analysis = MOCK_ANALYSIS.find((a) => a.id === analysisId)
 
   if (!analysis) {
@@ -88,7 +89,8 @@ export async function generateMetadata({ params }: AnalysisPageProps): Promise<M
 }
 
 export default async function AnalysisPage({ params }: AnalysisPageProps) {
-  const analysisId = Number.parseInt(params.id)
+  const { id } = await params
+  const analysisId = Number.parseInt(id)
   const analysis = MOCK_ANALYSIS.find((a) => a.id === analysisId)
 
   if (!analysis) {
