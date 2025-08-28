@@ -25,6 +25,9 @@ const russoOne = Russo_One({
 export const metadata: Metadata = {
   title: "BRICS News",
   description: "Latest news from BRICS countries",
+  other: {
+    "google-adsense-account": "ca-pub-8072956877011179",
+  },
 }
 
 export default function RootLayout({

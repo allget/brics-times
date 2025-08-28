@@ -82,9 +82,13 @@ useEffect(() => {
 
           <div className="flex">
             <div className="flex gap-2">
-                  {/* <img src={bannerPropaganda}/> */}
               {bannerPropaganda && bannerPropaganda.startsWith("http") ? (
-                <img src={bannerPropaganda} alt="Propaganda" />
+                // <img className="w-md h-md" src={bannerPropaganda} alt="Propaganda" />
+                <div
+                  className="bg-cover bg-center w-full h-64"
+                >
+                  <img className="h-[600px] " src={bannerPropaganda} alt="Propaganda" />
+                </div>
               ) : (
                 <p className="text-center py-4 text-sm text-zinc-500 dark:text-zinc-400">
                   {bannerPropaganda || "Carregando..."}
