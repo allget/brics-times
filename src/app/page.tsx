@@ -8,6 +8,7 @@ import { Ticker } from "@/components/ticker"
 import { LanguageSelector } from "@/components/language-selector"
 import { ImageWithFallback } from "@/components/image-with-fallback"
 import { useLanguage } from "@/contexts/language-context"
+import { useSavedArticles } from "@/contexts/saved-articles-context"
 import { useSanityNews } from "@/hooks/use-sanity-news"
 import { useAnalysis } from "@/hooks/use-analysis"
 import { fetchAndActivate, getValue } from "firebase/remote-config"
@@ -26,15 +27,16 @@ import {
   X,
   CheckCircle,
 } from "lucide-react"
-import type { NewsArticle, SavedArticle } from "@/types"
+import type { SavedArticle } from "@/types"
 
 export default function Home() {
   const { t, language } = useLanguage()
   const { articles, featuredArticle, loading, error, isUsingSanity, refreshNews } = useSanityNews()
   const { analyses, loading: analysesLoading, isUsingSanity: isUsingAnalysisSanity } = useAnalysis()
+  const { savedArticles, saveArticle, removeSavedArticle, isArticleSaved, savedCount } = useSavedArticles()
+
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSavedNewsOpen, setIsSavedNewsOpen] = useState(false)
-  const [savedArticles, setSavedArticles] = useState<SavedArticle[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCountry, setSelectedCountry] = useState("TODOS")
   const [selectedCategory, setSelectedCategory] = useState("TODAS")
@@ -107,24 +109,6 @@ export default function Home() {
     })
   }, [articles, searchTerm, selectedCountry, selectedCategory, t])
 
-  const handleSaveArticle = (article: NewsArticle) => {
-    const isAlreadySaved = savedArticles.some((saved) => saved.id === article.id)
-
-    if (isAlreadySaved) {
-      setSavedArticles((prev) => prev.filter((saved) => saved.id !== article.id))
-    } else {
-      const savedArticle: SavedArticle = {
-        ...article,
-        savedAt: new Date().toISOString(),
-      }
-      setSavedArticles((prev) => [...prev, savedArticle])
-    }
-  }
-
-  const handleRemoveSavedArticle = (articleId: number) => {
-    setSavedArticles((prev) => prev.filter((saved) => saved.id !== articleId))
-  }
-
   const handleReadSavedArticle = (article: SavedArticle) => {
     setIsSavedNewsOpen(false)
     if (article.slug) {
@@ -132,15 +116,9 @@ export default function Home() {
     }
   }
 
-  const savedArticlesCount = savedArticles.length
-
   const handleMenuSavedNewsClick = () => {
     setIsMenuOpen(false)
     setIsSavedNewsOpen(true)
-  }
-
-  const isArticleSaved = (articleId: number) => {
-    return savedArticles.some((saved) => saved.id === articleId)
   }
 
   const heroArticle = featuredArticle
@@ -181,7 +159,7 @@ export default function Home() {
           <Menu
             onClose={() => setIsMenuOpen(false)}
             onCartClick={handleMenuSavedNewsClick}
-            cartItemCount={savedArticlesCount}
+            cartItemCount={savedCount}
           />
         )}
       </AnimatePresence>
@@ -192,7 +170,7 @@ export default function Home() {
             isOpen={isSavedNewsOpen}
             onClose={() => setIsSavedNewsOpen(false)}
             savedArticles={savedArticles}
-            onRemoveArticle={handleRemoveSavedArticle}
+            onRemoveArticle={removeSavedArticle}
             onReadArticle={handleReadSavedArticle}
           />
         )}
@@ -230,7 +208,7 @@ export default function Home() {
                       onClick={() => setIsSavedNewsOpen(true)}
                       className="text-xs font-bold transition-colors duration-200 hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-black px-2 py-2"
                     >
-                      {t("saved.button")} {savedArticlesCount}
+                      {t("saved.button")} {savedCount}
                     </button>
                   </div>
                 </div>
@@ -348,7 +326,7 @@ export default function Home() {
                 <ImageWithFallback
                   src={getHeroImageSrc() || "/placeholder.svg"}
                   alt={heroArticle?.title || "Cúpula dos países BRICS"}
-                  className="w-full h-[550px] object-cover"
+                  className="w-full h-[350px] object-cover"
                   priority={true}
                   fallbackSrc="https://images.unsplash.com/photo-1541746972996-4e0b0f93e586?w=1200&h=400&fit=crop"
                 />
@@ -390,9 +368,9 @@ export default function Home() {
                 </div>
               )}
 
-              <div>
+              <div className="w-full">
                 {bannerPropaganda && bannerPropaganda.startsWith("http") ? (
-                  <img src={bannerPropaganda || "/placeholder.svg"} alt="Propaganda" />
+                  <img className="w-full mx-auto" src={bannerPropaganda || "/placeholder.svg"} alt="Propaganda" />
                 ) : (
                   <p className="text-center py-4 text-sm text-zinc-500 dark:text-zinc-400">
                     {bannerPropaganda || "Carregando..."}
@@ -440,7 +418,7 @@ export default function Home() {
                                   {t("news.read")}
                                 </Link>
                                 <button
-                                  onClick={() => handleSaveArticle(article)}
+                                  onClick={() => saveArticle(article)}
                                   className="flex items-center justify-center gap-2 w-full border border-zinc-900 dark:border-white py-2 text-xs tracking-widest font-bold px-6 hover:bg-zinc-900 dark:hover:bg-white dark:hover:text-black hover:text-white transition-colors"
                                 >
                                   {isArticleSaved(article.id) ? (
@@ -544,39 +522,7 @@ export default function Home() {
               </div>
             </section>
 
-            {/* <section className="border-b border-t border-zinc-900 dark:border-zinc-600 p-4">
-              <div className="relative text-center text-white">
-                <ImageWithFallback
-                  src={
-                    articles[1]?.image ||
-                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=600&fit=crop" ||
-                    "/placeholder.svg" ||
-                    "/placeholder.svg"
-                   || "/placeholder.svg"}
-                  alt="Arquivo BRICS"
-                  className="w-full h-[400px] md:h-[600px] object-cover"
-                  fallbackSrc="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=600&fit=crop"
-                />
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-70">
-                  <h2 className="text-4xl md:text-7xl font-serif tracking-[0.3em] text-center px-4">
-                    {t("section.archive")}
-                  </h2>
-                  <p className="mt-4 text-sm tracking-wider text-center px-4">{t("section.archive.subtitle")}</p>
-                  <button
-                    onClick={() => {
-                      if (articles[1]) {
-                        window.location.href = `/news/${articles[1].slug}`
-                      }
-                    }}
-                    className="mt-8 border-2 border-white px-10 py-3 text-xs font-bold tracking-widest hover:bg-white hover:text-black transition-colors"
-                  >
-                    {t("section.archive.button")}
-                  </button>
-                </div>
-              </div>
-            </section> */}
-
-            <section className="border-b border-zinc-900 dark:border-zinc-600">
+            <section className="border-y border-zinc-900 dark:border-zinc-600">
               <div className="flex items-center justify-between p-4 md:p-6 border-b border-zinc-900 dark:border-zinc-600">
                 <h2 className="text-3xl md:text-4xl font-serif tracking-wider dark:text-zinc-100">
                   {t("section.analyses")}

@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Unica_One, IBM_Plex_Mono, Russo_One } from "next/font/google"
 import { LanguageProvider } from "@/contexts/language-context"
+import { SavedArticlesProvider } from "@/contexts/saved-articles-context"
 import "./globals.css"
 
 const unicaOne = Unica_One({
@@ -38,7 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${unicaOne.variable} ${ibmPlexMono.variable} ${russoOne.variable}`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <SavedArticlesProvider>{children}</SavedArticlesProvider>
+        </LanguageProvider>
       </body>
     </html>
   )

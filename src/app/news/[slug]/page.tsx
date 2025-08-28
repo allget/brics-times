@@ -4,14 +4,15 @@ import { NewsDetailPage } from "@/components/news-detail-page"
 import { getArticleBySlug, urlFor } from "@/lib/sanity"
 
 interface NewsPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // Função para gerar metadados dinâmicos
 export async function generateMetadata({ params }: NewsPageProps): Promise<Metadata> {
-  const article = await getArticleBySlug(params.slug, "pt")
+  const { slug } = await params
+  const article = await getArticleBySlug(slug, "pt")
 
   if (!article) {
     return {
@@ -39,8 +40,11 @@ export async function generateMetadata({ params }: NewsPageProps): Promise<Metad
 }
 
 export default async function NewsPage({ params }: NewsPageProps) {
+  // Aguardar os params antes de usar
+  const { slug } = await params
+
   // Buscar artigo em português por padrão
-  const article = await getArticleBySlug(params.slug, "pt")
+  const article = await getArticleBySlug(slug, "pt")
 
   if (!article) {
     notFound()

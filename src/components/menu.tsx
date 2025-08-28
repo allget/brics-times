@@ -56,11 +56,11 @@ export function Menu({ onClose, onCartClick, cartItemCount }: MenuProps) {
           <div className="flex items-center">
             <div className="flex-shrink-0 w-24 md:w-48 text-center py-3 md:py-5 border-r border-gray-600">
               <button onClick={onClose} className="tracking-widest font-bold text-xs">
-                CLOSE
+                FECHAR
               </button>
             </div>
             <div className="flex-1 text-center py-3">
-              <h1 className="text-lg md:text-2xl tracking-[0.2em] font-normal">BRICS NEWS</h1>
+              <h1 className="text-lg md:text-2xl tracking-[0.2em] font-normal">BRICS Times</h1>
             </div>
             <div className="flex-shrink-0 w-24 md:w-48 text-center py-3 md:py-5 border-l border-gray-600">
               <button onClick={onCartClick} className="tracking-widest font-bold text-xs">
@@ -103,7 +103,7 @@ export function Menu({ onClose, onCartClick, cartItemCount }: MenuProps) {
           </div>
         </main>
 
-        <footer className="border-t border-gray-600">
+        {/* <footer className="border-t border-gray-600">
           <div className="flex items-center p-4">
             <input
               type="text"
@@ -112,7 +112,7 @@ export function Menu({ onClose, onCartClick, cartItemCount }: MenuProps) {
             />
             <Search className="h-6 w-6" />
           </div>
-        </footer>
+        </footer> */}
       </div>
     </motion.div>
   )
